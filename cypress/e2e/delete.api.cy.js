@@ -16,7 +16,7 @@ describe('Deletar um dispositivos', () => {
 
         cy.request({
             method: 'POST',
-            url: 'https://api.restful-api.dev/objects',
+            url: '/objects',
             failOnStatusCode: false,
             body: body
         }).as('postDeviceResult')
@@ -28,7 +28,7 @@ describe('Deletar um dispositivos', () => {
 
             cy.request({
                 method: 'DELETE',
-                url: `https://api.restful-api.dev/objects/${response_post.body.id}`,
+                url: `/objects/${response_post.body.id}`,
                 failOnStatusCode: false,
             }).as('deleteDeviceResult')
 
@@ -38,9 +38,25 @@ describe('Deletar um dispositivos', () => {
             expect(response_del.body.message)
                 .equal(`Object with id = ${response_post.body.id} has been deleted.`)
         })
-})
-
-
-
+    })
     })
 })
+
+it('Deletar um dispositivo não existente', () => {
+
+        const id_inexistente = 'Douglas'
+
+        cy.request({
+            method: 'DELETE',
+            url: `/objects/${id_inexistente}`,
+            failOnStatusCode: false,
+        }).as('deleteDeviceResult')
+
+    //validações do delete
+    cy.get('@deleteDeviceResult').then((response_del) => {
+        expect(response_del.status).equal(404)
+        expect(response_del.body.error)
+            .equal(`Object with id = ${id_inexistente} doesn't exist.`)
+    })
+})
+
