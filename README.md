@@ -1,35 +1,45 @@
-# Projeto de Automação de Testes de API com Cypress
+# Projeto de Automação de Testes de API com Cypress + BDD
 
-Este repositório contém um projeto de automação de testes de API desenvolvido com **Cypress**.  
-O objetivo é validar requisições HTTP (GET, POST, PUT, DELETE) organizados, reutilizáveis e de fácil manutenção.
-[https://api.restful-api.dev/objects]
-Essa API permite realizar operações CRUD completas sem autenticação.
+Este repositório contém um projeto de **automação de testes de API** utilizando o framework **Cypress** com apoio de **BDD (Behavior-Driven Development)**, onde os testes são escritos em **Gherkin** para facilitar a leitura, colaboração e rastreabilidade.
+
+As automações cobrem testes nos métodos **GET, POST, PUT e DELETE**, usando a API pública [JSONPlaceholder](https://jsonplaceholder.typicode.com) e uma API simulada no endpoint `/objects`.
 
 ---
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
 - [Node.js](https://nodejs.org/)
 - [Cypress](https://www.cypress.io/)
+- [Cucumber Preprocessor](https://github.com/badeball/cypress-cucumber-preprocessor) (BDD)
+- [Mochawesome](https://github.com/adamgruber/mochawesome) (evidências em HTML)
 - JavaScript
-- Mocha (test runner nativo do Cypress)
-- VS Code
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
+```bash
 automacaodeapi/
 ├── cypress/
 │   ├── e2e/
-│   │   ├── api_testes/
-│   │   │   ├── get.api.cy.js
-│   │   │   ├── post.api.cy.js
-│   │   │   ├── put.api.cy.js
-│   │   │   └── delete.api.cy.js
+│   │   ├── features/                 # Cenários em Gherkin
+│   │   │   ├── get_user.feature
+│   │   │   ├── post_user.feature
+│   │   │   ├── put_user.feature
+│   │   │   └── delete_user.feature
+│   │   ├── step_definitions/        # Definições dos passos (Steps)
+│   │   │   ├── get_user.steps.js
+│   │   │   ├── post_user.steps.js
+│   │   │   ├── put_user.steps.js
+│   │   │   └── delete_user.steps.js
+│   │   ├── get.api.cy.js            # Scripts Cypress tradicionais (backup/base)
+│   │   ├── post.api.cy.js
+│   │   ├── put.api.cy.js
+│   │   └── delete.api.cy.js
 │   ├── fixtures/
+│   ├── reports/
+│   │   └── html/                    # Relatórios em HTML (Mochawesome)
 │   └── support/
-│       ├── commands.js
 │       └── e2e.js
 ├── cypress.config.js
 ├── package.json
@@ -37,24 +47,72 @@ automacaodeapi/
 
 ---
 
-## O que foi feito neste projeto
+## O que foi implementado
 
-- **POST**: Testes de criação de objetos com dados válidos e inválidos.
-- **GET**: Validação da consulta de objetos e análise da resposta.
-- **PUT**: Atualização parcial de objetos.
-- **DELETE**: Exclusão de objetos por ID.
-- **Exceções**: Testes com dados incompletos, inválidos ou com falha esperada.
+Foram criados cenários em BDD com validações automatizadas para os principais métodos HTTP da API:
+
+| Método | Endpoint       | Descrição                                | Status |
+|--------|----------------|------------------------------------------|--------|
+| GET    | `/posts/1`     | Consulta de post por ID                  | OK     |
+| POST   | `/posts`       | Criação de novo post                     | OK     |
+| PUT    | `/posts/1`     | Atualização de um post existente         | OK     |
+| DELETE | `/posts/1`     | Exclusão de post por ID                  | OK     |
+
+ Validações aplicadas:
+	•	Status de resposta: 200, 201, 400, 404
+	•	Conteúdo do corpo da resposta (valores esperados)
+	•	Exceções com dados inválidos ou ausentes
+	•	Geração de evidência em HTML com sucesso ou falha do teste
+
+---
+
+## Evidências de Testes
+
+Após a execução dos testes com `npx cypress run`, são geradas evidências automáticas em HTML com o **Mochawesome**.  
+Você pode encontrá-las em:
+
+```
+cypress/reports/html/mochawesome.html
+```
+
+Abra este arquivo no navegador para visualizar os testes executados com status, tempo e validações realizadas.
 
 ---
 
 ## Como executar o projeto
 
-- Direcionar até a pasta do projeto na maquina
+### 1. Clone o repositório
 
-bash ou cmd
+```bash
 git clone https://github.com/felixrobertobh/automacaodeapi.git
+```
+
+### 2. Instale as dependências
+
+```bash
 npm install
-npx cypress open ou npx cypress run
+```
 
+### 3. Execute os testes
 
-- Felix Samaritani
+- Com interface visual:
+
+```bash
+npx cypress open
+```
+
+- Para gerar evidência HTML automaticamente:
+
+```bash
+npx cypress run
+```
+
+---
+
+## Autor
+
+**Félix Samaritani**  
+Especialista em Qualidade de Software • QA Sênior  
+[LinkedIn](https://www.linkedin.com/in/felixrobertobh)
+
+---
