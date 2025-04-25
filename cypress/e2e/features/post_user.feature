@@ -5,7 +5,7 @@ Feature: Testar criação de dispositivos na API
     When eu envio uma requisição POST para "/objects"
     Then o status da resposta deve ser 200
     And a resposta deve conter a data de criação atual
-    And o campo "name" deve conter "Desafio do DOUGLAS"
+    And o campo "name" deve conter "Automação do Felix"
 
   Scenario: Tentar cadastrar sem dados
     Given que eu não envio dados no corpo da requisição

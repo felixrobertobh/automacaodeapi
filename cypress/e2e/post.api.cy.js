@@ -7,13 +7,13 @@ describe('Cadastro de dispositivos', () => {
         const dataAtual = new Date().toISOString().slice(0, 10)
     
         const body = {                
-            "name": "Desafio do DOUGLAS",
+            "name": "Automação do Felix",
             "data": {
                 "year": 2023,
                 "price": 999,
                 "CPU model": "Intel Core i9",
                 "Hard disk size": "1 TB",
-                "owner": "Desafio Tecnico Douglas"
+                "owner": "Automação da API Felix"
             }
         }
 
@@ -30,7 +30,7 @@ describe('Cadastro de dispositivos', () => {
             expect(response.body.id).not.empty
             expect(response.body.createdAt).not.empty
             expect(response.body.createdAt.slice(0, 10)).equal(dataAtual)
-            expect(response.body.name).equal("Desafio do DOUGLAS")
+            expect(response.body.name).equal("Automação do Felix")
 
         })
     })

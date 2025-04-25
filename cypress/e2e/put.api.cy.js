@@ -5,24 +5,24 @@ describe('Alterar um dispositivos', () => {
     it('Alterar um dispositivo', () => {
 
         const body_cadastro = {                
-            "name": "Desafio do DOUGLAS",
+            "name": "Desafio do Felix",
             "data": {
                 "year": 2023,
                 "price": 999,
                 "CPU model": "Intel Core i9",
                 "Hard disk size": "1 TB",
-                "owner": "Desafio Tecnico Douglas"
+                "owner": "Desafio Tecnico Felix"
             }
         }
 
         const body_update = {                
-            "name": "Desafio do DOUGLAS - UPDATE",
+            "name": "Desafio do Felix - UPDATE",
             "data": {
                 "year": 2023,
                 "price": 999,
                 "CPU model": "Intel Core i9",
                 "Hard disk size": "1 TB",
-                "owner": "Desafio Tecnico API Douglas"
+                "owner": "Desafio Tecnico API Felix"
             }
         }
 

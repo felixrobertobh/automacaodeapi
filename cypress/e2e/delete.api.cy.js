@@ -4,13 +4,13 @@ describe('Deletar um dispositivos', () => {
 
     it('Deletar um dispositivo', () => {
         const body = {                
-            "name": "Desafio do DOUGLAS",
+            "name": "Automação do Felix",
             "data": {
                 "year": 2023,
                 "price": 999,
                 "CPU model": "Intel Core i9",
                 "Hard disk size": "1 TB",
-                "owner": "Desafio Tecnico Douglas"
+                "owner": "Automação da API Felix"
             }
         }
 
@@ -44,7 +44,7 @@ describe('Deletar um dispositivos', () => {
 
 it('Deletar um dispositivo não existente', () => {
 
-        const id_inexistente = 'Douglas'
+        const id_inexistente = 'Felix'
 
         cy.request({
             method: 'DELETE',
